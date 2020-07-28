@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-toolbar mode="ios">
+        <ion-icon name="close-outline" class="dismissBtn" color="light" (click)="dismissModal()"></ion-icon>
+        <ion-title text-center text-uppercase class="music_title" color="light">Playing Music in Ionic-Capacitor</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="fixedCenterContent">
+        <ion-thumbnail>
+            <img src="{{song_cover_img_path}}">
+        </ion-thumbnail>
+    </div>
+
+    <div class="fixedCenterContent">
+        <ion-text color="light">{{song_title| titlecase}}</ion-text>
+        <p color="light" class="pUser microsoft marquee">{{singer_name | uppercase}}</p>
+    </div>
+    <ion-range min="0" max="{{duration}}" [(ngModel)]="position"
+               color="light"
+               (ngModelChange)="onSliderChanged()">
+    </ion-range>
+    <div class="rangePlaytime">
+        <ion-label class="startTime" color="light">{{ display_position }}</ion-label> <span style="display: none">{{checker}}</span>
+        <ion-label class="endTime" color="light" *ngIf="duration == -1">--:--</ion-label> <!-- showing when not ready -->
+        <ion-label class="endTime" color="light" *ngIf="duration != -1">{{ display_duration }}</ion-label> <!-- showing actual durration -->
+    </div>
+
+    <ion-grid>
+        <ion-row style="height: 100%">
+            <ion-col>
+                <div class="flexRow">
+                    <div>
+                        <ion-icon name="heart-outline"></ion-icon>
+                    </div>
+                    <div>
+                        <ion-icon name="play-back"></ion-icon>
+                    </div>
+                    <div>
+                        <ion-button class="play_pause_btn" fill="clear" expand="block" *ngIf="!is_playing"
+                                    (click)="this.play(); this.check()"
+                                    [disabled]="!is_ready">
+                            <ion-icon name="play" class="darkColor"></ion-icon>
+                        </ion-button>
+
+                        <ion-button class="play_pause_btn" fill="clear" expand="block" *ngIf="is_playing"
+                                    (click)="pause()"
+                                    [disabled]="!is_ready">
+                            <ion-icon name="pause" class="darkColor"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <div>
+                        <ion-icon name="play-forward"></ion-icon>
+                    </div>
+                    <div>
+                        <ion-icon name="ellipsis-vertical"></ion-icon>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,8 @@
+{
+  "name": "simple_music_player",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}
