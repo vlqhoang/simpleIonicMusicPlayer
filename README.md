@@ -12,7 +12,7 @@ This project applies the following:
 ## Usage
 #### How to run:
 ```shell script
-npm install #asd
+npm install
 ionic build
 npx cap add ios
 npx cap sync
